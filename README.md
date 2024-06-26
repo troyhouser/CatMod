@@ -1,5 +1,5 @@
 
-(https://github.com/user-attachments/files/15993098/catmod.md)***CatMod***: An easy-to-use package for modeling categorization
+***CatMod***: An easy-to-use package for modeling categorization
 ================
 
 *CatMod* is an R package that infers the category representations people
@@ -116,7 +116,7 @@ A prototype and the average of the Category B exemplars is the Category
 B protoype.  
 
 Now say, the subject sees an entirely novel stimulus:  
-![](catmod_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->  
+![](example_stimuli/0001.png)<!-- -->  
 *What category does this stimulus belong to?*  
 
   First, we assume that the subject compares the features of the novel
