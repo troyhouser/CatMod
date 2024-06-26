@@ -1,12 +1,6 @@
 
-[catmod.md](https://github.com/user-attachments/files/15993098/catmod.md)***CatMod***: An easy-to-use package for modeling categorization
+(https://github.com/user-attachments/files/15993098/catmod.md)***CatMod***: An easy-to-use package for modeling categorization
 ================
-
-<style type="text/css">
-  body{
-  font-size: 12pt;
-}
-</style>
 
 *CatMod* is an R package that infers the category representations people
 rely on when making category decisions, or generalizing category
@@ -107,13 +101,13 @@ or red. The pattern dimension is either dots or stripes. Say the
 Category A prototype is a large, blue, dotted square. This makes the
 Category B prototype a small, red, striped, triangle.
 
-![](catmod_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](example_stimuli/Presentation1/Slide1.png)<!-- -->
 
 Subjects learn categories by categorizing a set of exemplars through
 trial and error:  
   
   **Category Exemplars:**  
-![](catmod_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](example_stimuli/Presentation1/Slide2.png)<!-- -->
 
   We see that most Category A exemplars are large, blue, dotted, and
 square and that most Category B exemplars are small, red, striped, and
