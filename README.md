@@ -127,7 +127,7 @@ shape, and size of Category A’s prototype but the same pattern as
 Category B’s prototype. (By arbitrarily denoting prototype A’s features
 as 0s and prototype B’s features as 1s, we can easily compute the
 difference between dimensions.)  
-![](catmod_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](example_stimuli/Presentation1/dim_dist.png)<!-- -->
 
   Next, we weight the distances by attention. We know attention is
 capacity-limited and distributed across stimulus features unequally. For
@@ -135,28 +135,28 @@ illustration purposes, we show attention weighted distances with equal
 attention to each feature, which shows the same information as the plot
 above, just downscaled. The function of these weights is to effectively
 *stretch* or *shrink* the stimulus space.  
-![](catmod_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->    
+![](example_stimuli/Presentation1/weighted_dim_dist.png)<!-- -->    
 Consider the case where the subject mostly paid attention to the color
 of the stimuli only. Allocating most attention to color serves to
 enhance the discrepancy between color distance and the other feature
 distance. In other words, this means that to an observer that allocated
 attention as such, the color distance is perceived as larger, while the
 other distances are effectively ignored.  
-![](catmod_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->    
+![](example_stimuli/Presentation1/weighted_dim_dist2.png)<!-- -->    
 Next, (back to the original attention weights) we sum the feature
 distances to obtain single measures of distance between the novel
 stimulus and both prototypes.  
-![](catmod_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->    
+![](example_stimuli/Presentation1/stim_dist.png)<!-- -->    
 Next, we compute the perceived similarity scores. Intuitively, these
 will be negatively related to stimulus distance: If two stimuli are
 physically distant/distinct, their similarity will be low. We also apply
 the Shepard kernel to make perceived similarity a function of
 exponential distance and scale it by a sensitivity parameter.  
-![](catmod_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->    
+![](example_stimuli/Presentation1/sims.png)<!-- -->    
 Last but not least, we transform perceived similarities into
 probabilities in order to obtain the *probability that the subject will
 categorize the novel stimulus into either category.*  
-![](catmod_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->  
+![](example_stimuli/Presentation1/probs.png)<!-- -->  
   
   
 The exemplar model goes through the exact same procedures but with one
@@ -193,20 +193,20 @@ rnn = rnn_simulations(type = type,epochs = epochs, sim_subjects = sim_subjects, 
 ```
 
 **Performance of RNN on Type 1 Problem**  
-![](catmod_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](example_stimuli/Presentation1/t1.png)<!-- -->
 
 **Performance of RNN on Type 1 Problem for Individual (Simulated)
 Subejcts**  
-![](catmod_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](example_stimuli/Presentation1/t1_subs.png)<!-- -->
 
 **Performance of RNN on Type 2 Problem**  
-![](catmod_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](example_stimuli/Presentation1/t2.png)<!-- -->
 
 **Performance of RNN on Type 4 Problem**  
-![](catmod_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](example_stimuli/Presentation1/t4.png)<!-- -->
 
 **Performance of RNN on Type 6 Problem**  
-![](catmod_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](example_stimuli/Presentation1/t6.png)<!-- -->
 
   Using RNNs to study category decisions and representations have not
 received nearly as much attention as the more traditional category
@@ -216,7 +216,7 @@ i.e., more akin to what they may look like in networks of interconnected
 neurons. The RNN used here provides a glimpse of this for it outputs a
 correlation matrix that is the correlations between hidden layer unit
 activations for each of the 8 stimuli. 
-![](catmod_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->    
+![](example_stimuli/Presentation1/hidden.png)<!-- -->    
 We see that the category representations latent in the correlation
 structure of the RNN’s hidden layer unit activations is not perfect but
 it does fairly well at capturing the categories: This was trained on the
