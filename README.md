@@ -127,7 +127,7 @@ shape, and size of Category A’s prototype but the same pattern as
 Category B’s prototype. (By arbitrarily denoting prototype A’s features
 as 0s and prototype B’s features as 1s, we can easily compute the
 difference between dimensions.)  
-![](example_stimuli/Presentation1/dim_dist.png)<!-- -->
+![](example_stimuli/dim_dist.png)<!-- -->
 
   Next, we weight the distances by attention. We know attention is
 capacity-limited and distributed across stimulus features unequally. For
@@ -135,28 +135,28 @@ illustration purposes, we show attention weighted distances with equal
 attention to each feature, which shows the same information as the plot
 above, just downscaled. The function of these weights is to effectively
 *stretch* or *shrink* the stimulus space.  
-![](example_stimuli/Presentation1/weighted_dim_dist.png)<!-- -->    
+![](example_stimuli/weighted_dim_dist.png)<!-- -->    
 Consider the case where the subject mostly paid attention to the color
 of the stimuli only. Allocating most attention to color serves to
 enhance the discrepancy between color distance and the other feature
 distance. In other words, this means that to an observer that allocated
 attention as such, the color distance is perceived as larger, while the
 other distances are effectively ignored.  
-![](example_stimuli/Presentation1/weighted_dim_dist2.png)<!-- -->    
+![](example_stimuli/weighted_dim_dist2.png)<!-- -->    
 Next, (back to the original attention weights) we sum the feature
 distances to obtain single measures of distance between the novel
 stimulus and both prototypes.  
-![](example_stimuli/Presentation1/stim_dist.png)<!-- -->    
+![](example_stimuli/stim_dist.png)<!-- -->    
 Next, we compute the perceived similarity scores. Intuitively, these
 will be negatively related to stimulus distance: If two stimuli are
 physically distant/distinct, their similarity will be low. We also apply
 the Shepard kernel to make perceived similarity a function of
 exponential distance and scale it by a sensitivity parameter.  
-![](example_stimuli/Presentation1/sims.png)<!-- -->    
+![](example_stimuli/sims.png)<!-- -->    
 Last but not least, we transform perceived similarities into
 probabilities in order to obtain the *probability that the subject will
 categorize the novel stimulus into either category.*  
-![](example_stimuli/Presentation1/probs.png)<!-- -->  
+![](example_stimuli/probs.png)<!-- -->  
   
   
 The exemplar model goes through the exact same procedures but with one
@@ -193,20 +193,20 @@ rnn = rnn_simulations(type = type,epochs = epochs, sim_subjects = sim_subjects, 
 ```
 
 **Performance of RNN on Type 1 Problem**  
-![](example_stimuli/Presentation1/t1.png)<!-- -->
+![](example_stimuli/t1.png)<!-- -->
 
 **Performance of RNN on Type 1 Problem for Individual (Simulated)
 Subejcts**  
-![](example_stimuli/Presentation1/t1_subs.png)<!-- -->
+![](example_stimuli/t1_subs.png)<!-- -->
 
 **Performance of RNN on Type 2 Problem**  
-![](example_stimuli/Presentation1/t2.png)<!-- -->
+![](example_stimuli/t2.png)<!-- -->
 
 **Performance of RNN on Type 4 Problem**  
-![](example_stimuli/Presentation1/t4.png)<!-- -->
+![](example_stimuli/t4.png)<!-- -->
 
 **Performance of RNN on Type 6 Problem**  
-![](example_stimuli/Presentation1/t6.png)<!-- -->
+![](example_stimuli/t6.png)<!-- -->
 
   Using RNNs to study category decisions and representations have not
 received nearly as much attention as the more traditional category
@@ -216,7 +216,7 @@ i.e., more akin to what they may look like in networks of interconnected
 neurons. The RNN used here provides a glimpse of this for it outputs a
 correlation matrix that is the correlations between hidden layer unit
 activations for each of the 8 stimuli. 
-![](example_stimuli/Presentation1/hidden.png)<!-- -->    
+![](example_stimuli/hidden.png)<!-- -->    
 We see that the category representations latent in the correlation
 structure of the RNN’s hidden layer unit activations is not perfect but
 it does fairly well at capturing the categories: This was trained on the
