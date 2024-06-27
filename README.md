@@ -32,7 +32,7 @@ dimension that gets optimized, plus a similarity sensitivity parameter,
 and (optional) a gamma parameter akin to temperature in the classic
 softmax choice rule. For example, in the four dimensional stimuli below,
 one needs a vector of initial parameters of length 5 (no gamma) or 6
-(with gamma).  
+(with gamma).   **_See the package documentation in R for concrete examples using code!_**
   
   
 
