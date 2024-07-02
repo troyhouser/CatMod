@@ -284,7 +284,9 @@ colnames(CatModDat) = c("pfit","pSensitivity",paste0("pD",1:8),"efit","eSensitiv
 ```
 
 
-That's it! In less than 20 lines of (actual) code, we read in the data for all subjects, optimized sensitivity and 8 attention parameters for both prototype and exemplar models and stored all the optimized parameters and model fits in a single wide dataframe that we can use to visualize these results...such as, the model fits for both models:
+That's it! In less than 20 lines of (actual) code, we read in the data for all subjects, optimized sensitivity and 8 attention parameters for both prototype and exemplar models and stored all the optimized parameters and model fits in a single wide dataframe that we can use to visualize these results. Moreover, all the heavy lifting for model fitting processes is accomplished with a single line of code using the _run_models_function.
+
+We can visualize the model fits for both models:
 
 ![](example_stimuli/model_fits.png)<!-- -->
 
