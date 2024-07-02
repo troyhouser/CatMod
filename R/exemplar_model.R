@@ -13,7 +13,7 @@ exemplar_model = function(pars){
   }else{
     r = 1
   }
-  print(labels)
+  
   n_cat = length(unique(labels))
   categories = LETTERS[1:n_cat]
 
