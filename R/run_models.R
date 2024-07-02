@@ -1,4 +1,4 @@
-run_models = function(stimuli,prototypes,exemplars,resp,labels,inits){
+run_models = function(stimuli,prototypes,exemplars,resp,traincat,inits){
 
   if(!require(Rsolnp)) install.packages("Rsolnp")
 
