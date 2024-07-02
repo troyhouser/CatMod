@@ -226,11 +226,14 @@ the last 4 stimuli belong to Category B and seem to be more correlated
 with each other overall than with stimuli 1-4.  
   
 
-**A real example!**
+***A real example!***
 _Now, I want to show you just how easy it is to run these models on real data._
+================
+
+I will apply the prototype and exemplar models to individuals' data I personally collected in Dasa Zeithamova's [Brain & Memory Lab](https://cognem.uoregon.edu/). We used a traditional category learning paradigm, where participants were shown cartoon images and had to sort them into either Category A or Category B. They learned the category membership of these training stimuli via corrective feedback. There were a total of 8 training stimuli (exemplars), 4 per category. When averaging the exemplars within a category, we can construct prototypes. Later, participants were shown a mix of old and new stimuli and they had to select the stimulus' category, this time receiving no feedback.
 
 
-I will apply the prototype and exemplar models to individuals' data I personally collected in Dasa Zeithamova's [Brain & Memory Lab](https://cognem.uoregon.edu/). We used a traditional category learning paradigm, where participants were shown cartoon images and had to sort them into either Category A or Category B. They learned the category membership of these training stimuli via corrective feedback. There were a total of 8 training stimuli (exemplars), 4 per category. When averaging the exemplars within a category, we can construct prototypes. Later, participants were shown a mix of old and new stimuli and they had to select the stimulus' category, this time receiving no feedback. 
+![](example_stimuli/task_stimuli_figures.png)<!-- -->
 
 
 We are going to apply the models to the categorization data, as provided in this package. Each file contains data from 1 unique subject. Each file has 17 columns (2 of these are ID columns, ignore the fact that there are 2!). Second column is called **distance** and it denotes the number of features that the stimulus has different from its respective prototype. **cat** is the category the stimulus belongs to and **num_cat** is simply its numerical format. **oldnew** tells us whether the stimulus is a training exemplar or a novel stimulus. All columns beginnging with a **d** are binary feature values (e.g., a 1/0 for d1 might mean yellow/gray). **resp** is the empirical response the subject made, **rt** is their response time, and **correct** is whether the response was correct (1) or incorrect (0). 
