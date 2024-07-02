@@ -14,7 +14,7 @@ exemplar_model = function(pars){
     r = 1
   }
   
-  n_cat = length(unique(labels))
+  n_cat = length(unique(traincat))
   categories = LETTERS[1:n_cat]
 
   dim_dist = dim_dist(exemplars,stimuli)
@@ -23,7 +23,7 @@ exemplar_model = function(pars){
   summed_dist = sum_dim_dist(weighted_dim_dist)
   stim_dist = stimulus_distance(summed_dist,r)
   perceived_sim = perceived_similarity(stim_dist,sensitivity)
-  summed_sims = sum_similarities(perceived_sim,labels,categories)
+  summed_sims = sum_similarities(perceived_sim,traincat,categories)
   probabilities = category_probabilities(summed_sims,gamma)
 
   lik = 0
