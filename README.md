@@ -109,7 +109,7 @@ trial and error:
   **Category Exemplars:**  
 ![](example_stimuli/Presentation1/Slide2.png)<!-- -->
 
-  We see that most Category A exemplars are large, blue, dotted, and
+We see that most Category A exemplars are large, blue, dotted, and
 square and that most Category B exemplars are small, red, striped, and
 triangle. Thus, the average of the Category A exemplars is the Category
 A prototype and the average of the Category B exemplars is the Category
@@ -119,7 +119,7 @@ Now say, the subject sees an entirely novel stimulus:
 ![](example_stimuli/0001.png)<!-- -->  
 *What category does this stimulus belong to?*  
 
-  First, we assume that the subject compares the features of the novel
+First, we assume that the subject compares the features of the novel
 stimulus to the features of both prototypes, obtaining some idea of the
 (absolute) discrepancy between features. The plot below tells us that
 the novel stimulus has the same color, shape, and size as the color,
@@ -129,7 +129,7 @@ as 0s and prototype B’s features as 1s, we can easily compute the
 difference between dimensions.)  
 ![](example_stimuli/dim_dist.png)<!-- -->
 
-  Next, we weight the distances by attention. We know attention is
+Next, we weight the distances by attention. We know attention is
 capacity-limited and distributed across stimulus features unequally. For
 illustration purposes, we show attention weighted distances with equal
 attention to each feature, which shows the same information as the plot
@@ -208,7 +208,7 @@ Subejcts**
 **Performance of RNN on Type 6 Problem**  
 ![](example_stimuli/t6.png)<!-- -->
 
-  Using RNNs to study category decisions and representations have not
+Using RNNs to study category decisions and representations have not
 received nearly as much attention as the more traditional category
 models introduced above, though there is ample evidence that hidden
 layers can capture more biologically plausible category representations,
@@ -226,3 +226,56 @@ the last 4 stimuli belong to Category B and seem to be more correlated
 with each other overall than with stimuli 1-4.  
   
 
+**A real example!**
+_Now, I want to show you just how easy it is to run these models on real data._
+
+
+I will apply the prototype and exemplar models to individuals' data I personally collected in Dasa Zeithamova's [Brain & Memory Lab](https://cognem.uoregon.edu/). We used a traditional category learning paradigm, where participants were shown cartoon images and had to sort them into either Category A or Category B. They learned the category membership of these training stimuli via corrective feedback. There were a total of 8 training stimuli (exemplars), 4 per category. When averaging the exemplars within a category, we can construct prototypes. Later, participants were shown a mix of old and new stimuli and they had to select the stimulus' category, this time receiving no feedback. 
+
+
+We are going to apply the models to the categorization data, as provided in this package. Each file contains data from 1 unique subject. Each file has 17 columns (2 of these are ID columns, ignore the fact that there are 2!). Second column is called **distance** and it denotes the number of features that the stimulus has different from its respective prototype. **cat** is the category the stimulus belongs to and **num_cat** is simply its numerical format. **oldnew** tells us whether the stimulus is a training exemplar or a novel stimulus. All columns beginnging with a **d** are binary feature values (e.g., a 1/0 for d1 might mean yellow/gray). **resp** is the empirical response the subject made, **rt** is their response time, and **correct** is whether the response was correct (1) or incorrect (0). 
+
+
+
+```{r}
+# list out the files in the data folder
+files = list.files("~/categorization/")
+
+# empty matrix to store final processed data
+CatModDat = matrix(nrow = length(files),ncol = 20)
+
+# for every subject...
+for(i in 1:length(files)){
+  # read in subject i's data
+  dat = read.csv(files[i])
+  
+  # what are the prototypes?
+  prototypes = dplyr::distinct(dat[dat$distance==0,c(4,6:13)])
+  prototypes = as.matrix(prototypes[order(prototypes$num_cat),-1])
+  
+  # what are the exemplars?
+  exemplars = dplyr::distinct(dat[dat$oldnew=="old",c(4,6:13)])
+  exemplars = as.matrix(exemplars[order(exemplars$num_cat),-1])
+  
+  # category labels for training stimuli
+  traincat = rep(c("A","B"),each=4)
+  
+  # get rid of missing responses
+  dat = dat[dat$resp != "None",]
+  
+  # categorization test stimuli
+  stimuli = as.matrix(dat[,6:13])
+  
+  # responses coded as capital letters
+  resp = LETTERS[as.numeric(dat$resp)]
+  
+  # fit the models
+  results = run_models(stimuli = stimuli, prototypes = prototypes, exemplars = exemplars, resp = resp, traincat = traincat, inits = c(1,rep(1/ncol(stimuli),ncol(stimuli))))
+  
+  # store the results
+  CatModDat[i,] = c(unlist(results))
+}
+
+CatModDat = as.data.frame(CatModDat)
+colnames(CatModDat) = c("pfit","pSensitivity",paste0("pD",1:8),"efit","eSensitivity",paste0("eD",1:8))
+```
