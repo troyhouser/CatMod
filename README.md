@@ -282,3 +282,16 @@ for(i in 1:length(files)){
 CatModDat = as.data.frame(CatModDat)
 colnames(CatModDat) = c("pfit","pSensitivity",paste0("pD",1:8),"efit","eSensitivity",paste0("eD",1:8))
 ```
+
+
+That's it! In less than 20 lines of (actual) code, we read in the data for all subjects, optimized sensitivity and 8 attention parameters for both prototype and exemplar models and stored all the optimized parameters and model fits in a single wide dataframe that we can use to visualize these results...such as, the model fits for both models:
+
+![](example_stimuli/model_fits.png)<!-- -->
+
+
+Overall, we can see that the prototype model fits the group averaged data the best, however, an important finding we found in this data that previous work from Dr. Zeithamova has shown, is that it is critical to analyze each individual. That is, just because the prototype model fit the group the best, it does not mean that every subject within the group used prototypes to categorize the novel stimuli. Some individuals are best fit by the exemplar model. To figure this out, one can use some form of monte carlo or gibbs sampling to construct a null distribution for both models for every subject, but this is beyond the scope of the current package.
+
+
+We can also visualize the attention paid to each feature of the stimuli.
+
+![](example_stimuli/attention_weights.png)<!-- -->
