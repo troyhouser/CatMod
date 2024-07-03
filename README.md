@@ -227,7 +227,7 @@ with each other overall than with stimuli 1-4.
   
 
 ***A real example!***
-_Now, I want to show you just how easy it is to run these models on real data._
+_Now, I want to show you just how easy it is to run these models on real data with CatMod._
 ================
 
 I will apply the prototype and exemplar models to individuals' data I personally collected in Dasa Zeithamova's [Brain & Memory Lab](https://cognem.uoregon.edu/). We used a traditional category learning paradigm, where participants were shown cartoon images and had to sort them into either Category A or Category B. They learned the category membership of these training stimuli via corrective feedback. There were a total of 8 training stimuli (exemplars), 4 per category. When averaging the exemplars within a category, we can construct prototypes. Later, participants were shown a mix of old and new stimuli and they had to select the stimulus' category, this time receiving no feedback.
