@@ -322,4 +322,35 @@ Then, we multiply each row of the exponentiated dimensional distance matrix by a
 ```{r}
 weighted_dim_dist = weight_dim_dist(exp_dim_dist = exponentiated_dim_dist, attention_weights = rep(1/8,8))
 ```
+
+In the image, turquoise colors denote larger distances and purple colors denote smaller distances.
 ![](example_stimuli/Slide1.png)<!-- -->
+
+
+Next, we compute the row sums for both attention weighted distances to each prototype, obtaining total distances that each test stimulus is from either prototype.
+
+```{r}
+summed_dist = sum_dim_dist(weighted_dim_dist = weighted_dim_dist)
+```
+
+To transform these distances back to metric space, we raise the distances to power of 1/r. Again, for city-block distances, this does not change the distance values. For euclidean distances (r=2), we simply square root the distances.
+
+```{r}
+stim_dist = stimulus_distance(summed_dim_dist = summed_dist, r = 1)
+```
+
+Then, we can apply the Shepard kernel to these distances to obtain measures of perceived similarity:
+
+```{r}
+sims = perceived_similarity(stim_dist = stim_dist, sensitivity = 1)
+```
+
+![](example_stimuli/Slide2.png)<!-- -->
+
+To finally transform similarities to probabilities of choosing the corresponding category label, we do:
+
+```{r}
+category_probabilities(perceived_sim = sims, gamma = 1)
+```
+
+Obtaining these likelihoods then enables optimization of the parameters through gradient descent on the log likelihood space.
