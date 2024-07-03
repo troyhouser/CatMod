@@ -297,3 +297,29 @@ Overall, we can see that the prototype model fits the group averaged data the be
 We can also visualize the attention paid to each feature of the stimuli.
 
 ![](example_stimuli/attention_weights.png)<!-- -->
+
+
+**Now, let's briefly give a more detailed description of the modeling process.**
+
+Below are the same steps that we reviewed above with the four dimensional stimuli, but here I will try to illustrate the process of computations for the prototype model so that we can see some of the functions the _run_models_ function uses under the hood. 
+
+This first image shows the first three steps of the prototype model: (1) compute dimensional distance, (2) exponentiate these distances, and (3) multiply by attention weights. Thus, if we have a matrix of stimuli that one sees during a categorization test, where each row represents a trial/8 dimensional stimulus, we simply compute the pairwise difference between each row and the category prototypes using:
+
+```{r}
+dim_dist = dim_dist(category_representations = prototypes,stimuli = stimuli)
+```
+
+For the exemplar model, we would simply substitute a matrix of exemplar representations for the prototypes.
+
+Next, we exponentiate the (absolute) dimensional distances. In the case of binary features, we use city-block distance metric, where r = 1 and the distances do not actually change:
+
+```{r}
+exponentiated_dim_dist = exp_dim_dist(dim_dist = dim_dist, r = 1)
+```
+
+Then, we multiply each row of the exponentiated dimensional distance matrix by a vector of attention weights:
+
+```{r}
+weighted_dim_dist = weight_dim_dist(exp_dim_dist = exponentiated_dim_dist, attention_weights = rep(1/8,8))
+```
+![](example_stimuli/Slide1.png)<!-- -->
