@@ -2,7 +2,7 @@
 \alias{get_likelihood}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+get sustain model fits
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
