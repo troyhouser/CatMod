@@ -354,3 +354,9 @@ category_probabilities(perceived_sim = sims, gamma = 1)
 ```
 
 Obtaining these likelihoods then enables optimization of the parameters through gradient descent on the log likelihood space.
+
+
+***A mix between specific and general.***
+As mentioned above, the reality of category representations is likely a blend of exemplar (i.e., specific) and prototype (i.e., general) representations. The Brain & Memory Lab has used monte carlo sampling to test the fit of prototype and exemplar models against a null distribution. If BOTH models fit better than chance, then this was taken as evidence that participants likely used a mixture of models. One can also use a traditional mixture model. In this case, a mixture model would calculate psychological similarity the same way both exemplar and prototype models do, and then compute the level of mixture with a mixing parameter: (w * exemplar-calculated-similarity) + ((1-w) * prototype-calculated-similarity). If w=1, then the subject only used exemplar representations. If w=0, the subject only used prototype representations. All values in between denote the level of mixing. 
+
+Another successful method conceptualizes category representations as clusters, which is a very flexible method for recapitulating input structure. This model, developed by Love et al. (2004), is called Supervised and Unsupervised STratified Adaptive Incremental Network. This mouthful can be called SUSTAIN for short. 
