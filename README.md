@@ -367,9 +367,9 @@ SUSTAIN is much more computationally intensive (at least in the code in this pac
 
 The flexibility of SUSTAIN lies in its ability to group stimuli in as many possible combinations as there exists among the stimuli. For example, for 4 stimuli and 2 categories, SUSTAIN can group them as ([a],[bcd]), ([ab],[cd]),([abc],[d]),([bd],[ac]), etc. By modeling supervised and unsupervised category learning, SUSTAIN can additionally model category learning WITHOUT feedback. Everything is the same as the supervised version, however, new clusters are recruited if the psychological dissimilarity exceeds some threshold that is another paraemeter optimized.
 
-Overall, we can imagine SUSTAIN as a model that uses multiple prototypes per category. For example, if one category composed of 4 stimuli was represented by 2 clusters, each cluster can be an average of two stimuli. Thus, it is not purely prototypical, where a category is depicted with a single prototype, but also not purely exemplar-y, where each individual exemplar is memorized. 
-
-The data that needs to be fed to the SUSTAIN model function in the _CatMod_ package is quite different from the format of the data needed for prototype and exemplar models. For example, the image below shows two clusters, one per category; however, the next image shows 8 clusters, four per category.
+Overall, we can imagine SUSTAIN as a model that uses multiple prototypes per category. For example, if one category composed of 4 stimuli was represented by 2 clusters, each cluster can be an average of two stimuli. Thus, it is not purely prototypical, where a category is depicted with a single prototype, but also not purely exemplar-y, where each individual exemplar is memorized. For example, the image below shows two clusters, one per category; however, the next image shows 8 clusters, four per category.
 
 ![](example_stimuli/clusters1.png)<!-- -->
 ![](example_stimuli/clusters2.png)<!-- -->
+
+The data that needs to be fed to the SUSTAIN model function in the _CatMod_ package is quite different from the format of the data needed for prototype and exemplar models. 
