@@ -372,4 +372,19 @@ Overall, we can imagine SUSTAIN as a model that uses multiple prototypes per cat
 ![](example_stimuli/clusters1.png)<!-- -->
 ![](example_stimuli/clusters2.png)<!-- -->
 
-The data that needs to be fed to the SUSTAIN model function in the _CatMod_ package is quite different from the format of the data needed for prototype and exemplar models. 
+The data that needs to be fed to the SUSTAIN model function in the _CatMod_ package is quite different from the format of the data needed for prototype and exemplar models. The stimuli need to be in a list, where each list element is a vector representation of a stimulus shown during the list element's corresponding trial. There also needs to be a list or vector of the number of feature variants for each feature within the stimulus for each dimension. This makes the one-hot encoding much simpler. One-hot encoding can be done with the following:
+
+```{r}
+coded_stimuli = lapply(exemplars_list, one_hot, n_feature_variants)
+```
+where one_hot is a package function. The _one_hot_ function will return a list of one-hot encoded stimuli. Once you have your stimuli recoded, you will need a list of _present_dimensions_, ie the dimensions that will be used to calculate measures of distance and psychological similarity. Because SUSTAIN works best by treating category labels as another dimension, this step is necessary. You will also need a list of _queried_dimensions_ which is a list specifying for each stimulus what the dimension is that contains the category labels. You will also need a list of empirical responses, and, finally, a vector of parameter initializations. With all of that information, you can pass the _optimizer_ function from _CatMod_ to the base r's _optim_ function like so:
+
+```{r}
+n_feature_variants = rep(2, ncol(stims))
+coded_stimuli = lapply(exemplars_list, one_hot, n_feature_variants)
+present_dimensions_test = rep(list(c(2:ncol(stims))), length(coded_stimuli))
+queried_dimensions_test = rep(list(1), length(coded_stimuli))
+responses_test = as.list(as.numeric(resp))
+model = optim(par = inits, fn = optimizer, stimuli = coded_stimuli, resp = responses_test, queried_list = queried_dimensions_test, present_list = present_dimensions_test, control = list(maxit=5000))
+```
+where **stims** is a matrix of stimuli with rows equal to number of stimuli and columns equal to the number of stimulus features, and **exemplars_list** is a list of length equal to number of stimuli, where each element is a vector representation of the stimulus.
