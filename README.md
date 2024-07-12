@@ -166,7 +166,9 @@ sums the perceived similarities within each category. Thus, the
 perceived similarity for Category A is the sum of the perceived
 similarity for exemplars 1-3 (left side of the image above).  
   
-***Neural Network extension***   This package also features a neural
+***Neural Network extension***   
+================
+This package also features a neural
 network model of category learning. Here, we train a recurrent neural
 network (RNN) to learn the seminal Six Problems made famous by Shepard
 et al. (1961). The Six Problems feature category learning of 8 binary
@@ -380,11 +382,22 @@ coded_stimuli = lapply(exemplars_list, one_hot, n_feature_variants)
 where one_hot is a package function. The _one_hot_ function will return a list of one-hot encoded stimuli. Once you have your stimuli recoded, you will need a list of _present_dimensions_, ie the dimensions that will be used to calculate measures of distance and psychological similarity. Because SUSTAIN works best by treating category labels as another dimension, this step is necessary. You will also need a list of _queried_dimensions_ which is a list specifying for each stimulus what the dimension is that contains the category labels. You will also need a list of empirical responses, and, finally, a vector of parameter initializations. With all of that information, you can pass the _optimizer_ function from _CatMod_ to the base r's _optim_ function like so:
 
 ```{r}
-n_feature_variants = rep(2, ncol(stims))
-coded_stimuli = lapply(exemplars_list, one_hot, n_feature_variants)
-present_dimensions_test = rep(list(c(2:ncol(stims))), length(coded_stimuli))
-queried_dimensions_test = rep(list(1), length(coded_stimuli))
-responses_test = as.list(as.numeric(resp))
+exemplar1 = c(1,1,1,0,0,0,0,0,0) # example stimulus 1 from Category A
+exemplar2 = c(1,0,0,1,1,0,0,0,0) # example stimulus 2 from Category A
+exemplar3 = c(2,0,0,0,0,1,1,0,0) # example stimulus 1 from Category B
+exemplar4 = c(2,0,0,0,0,0,0,1,1) # example stimulus 2 from Category B
+stims = rbind(exemplar1,exemplar2,exemplar3,exemplar4) # bind example stimuli into a single dataframe
+resp = sample(1:2,4,replace = T) # fake responses
+n_feature_variants = rep(2, ncol(stims)) # how many feature variants are there on each dimension of the stimuli ?
+coded_stimuli = lapply(exemplars_list, one_hot, n_feature_variants) # one hot encoding
+present_dimensions_test = rep(list(c(2:ncol(stims))), length(coded_stimuli)) # which features are we passing through to the model ?
+queried_dimensions_test = rep(list(1), length(coded_stimuli)) # which dimension denote category asignment ?
+responses_test = as.list(as.numeric(resp)) # make sure responses are numeric and in list format
 model = optim(par = inits, fn = optimizer, stimuli = coded_stimuli, resp = responses_test, queried_list = queried_dimensions_test, present_list = present_dimensions_test, control = list(maxit=5000))
 ```
 where **stims** is a matrix of stimuli with rows equal to number of stimuli and columns equal to the number of stimulus features, and **exemplars_list** is a list of length equal to number of stimuli, where each element is a vector representation of the stimulus.
+
+If you want, you can also take a more detailed peak at the best fitting SUSTAIN model for each subject with _CatMod_'s _get_likelihood_ function:
+```{r}
+optimal_sustain = get_likelihood(stimuli = coded_stimuli, responses = responses_test, queried_dimensions = queried_dimensions_test, present_dimensions = present_dimensions_test, sustain = list(r = model$par[1], beta = model$par[2], d = model$par[3], eta = model$par[4], lambdas = rep(1,length(coded_stimuli[[1]])), weights - NULL, return_sustain = T)
+```
