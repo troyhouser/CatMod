@@ -387,6 +387,8 @@ exemplar2 = c(1,0,0,1,1,0,0,0,0) # example stimulus 2 from Category A
 exemplar3 = c(2,0,0,0,0,1,1,0,0) # example stimulus 1 from Category B
 exemplar4 = c(2,0,0,0,0,0,0,1,1) # example stimulus 2 from Category B
 stims = rbind(exemplar1,exemplar2,exemplar3,exemplar4) # bind example stimuli into a single dataframe
+exemplars_list = rep(list(NA),nrow(stims))
+for(i in 1:nrow(stims)) exemplars_list[[i]] = as.numeric(stims[i,])
 resp = sample(1:2,4,replace = T) # fake responses
 n_feature_variants = rep(2, ncol(stims)) # how many feature variants are there on each dimension of the stimuli ?
 coded_stimuli = lapply(exemplars_list, one_hot, n_feature_variants) # one hot encoding
