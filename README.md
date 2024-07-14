@@ -401,5 +401,5 @@ where **stims** is a matrix of stimuli with rows equal to number of stimuli and 
 
 If you want, you can also take a more detailed peak at the best fitting SUSTAIN model for each subject with _CatMod_'s _get_likelihood_ function:
 ```{r}
-optimal_sustain = get_likelihood(stimuli = coded_stimuli, responses = responses_test, queried_dimensions = queried_dimensions_test, present_dimensions = present_dimensions_test, sustain = list(r = model$par[1], beta = model$par[2], d = model$par[3], eta = model$par[4], lambdas = rep(1,length(coded_stimuli[[1]])), weights - NULL, return_sustain = T)
+optimal_sustain = get_likelihood(stimuli = coded_stimuli, responses = responses_test, queried_dimensions = queried_dimensions_test, present_dimensions = present_dimensions_test, sustain = list(r = model$par[1], beta = model$par[2], d = model$par[3], eta = model$par[4], lambdas = rep(1,length(coded_stimuli[[1]])), weights = NULL, return_sustain = T))
 ```
