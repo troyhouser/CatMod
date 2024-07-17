@@ -201,6 +201,7 @@ get_likelihood = function(stimuli,responses,queried_dimensions,present_dimension
   if(return_sustain){
     return(list(sustain,likelihood))
   }
+  assign("sustain",sustain,envir=.GlobalEnv)
   return(likelihood)
 }
 
