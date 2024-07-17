@@ -206,12 +206,12 @@ get_likelihood = function(stimuli,responses,queried_dimensions,present_dimension
 
 optimizer = function(pars,stimuli,resp,queried_list,present_list){
 
-  for(i in 1:length(pars)){
-    pars[i] = abs(pars[i])
-    if(pars[i] > 30){
-      pars[i] = 30 / (1+exp(-pars[i]))
-    }
-  }
+  #for(i in 1:length(pars)){
+  #  pars[i] = abs(pars[i])
+  #  if(pars[i] > 30){
+  #    pars[i] = 30 / (1+exp(-pars[i]))
+  #  }
+  #}
 
   sustain_start = list(r = pars[1],beta = pars[2], d = pars[3],eta = pars[4],
                       clusters = list(),
